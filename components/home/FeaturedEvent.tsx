@@ -1,0 +1,2 @@
+import { GlassCard } from '@/components/ui/GlassCard';
+export function FeaturedEvent(){return <GlassCard className="p-8"><p className="text-sm font-bold uppercase tracking-[0.3em] text-accent">Featured event</p><h2 className="mt-3 text-3xl font-black text-white">Zero Gravity Gauntlet</h2><p className="mt-3 text-slate-300">Chain aerial eliminations across rotating platforms to earn limited prism armor and squad banners.</p></GlassCard>}

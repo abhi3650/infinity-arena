@@ -5,6 +5,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        primary: '#4F46E5',
+        secondary: '#06B6D4',
+        accent: '#A855F7',
         arena: {
           bg: '#070A13',
           panel: '#10172A',

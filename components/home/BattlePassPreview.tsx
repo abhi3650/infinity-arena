@@ -1,0 +1,2 @@
+import { GlassCard } from '@/components/ui/GlassCard';
+export function BattlePassPreview(){return <GlassCard className="p-6"><h2 className="text-2xl font-black text-white">Battle pass</h2><p className="mt-3 text-slate-300">Tier 47 / 100</p><div className="mt-4 h-3 overflow-hidden rounded-full bg-white/10"><div className="h-full w-[47%] rounded-full bg-gradient-to-r from-secondary to-accent" /></div></GlassCard>}
