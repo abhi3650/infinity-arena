@@ -1,6 +1,11 @@
-import { PageShell } from '@/components/page-shell';
-import { findRouteByHref } from '@/lib/routes';
+import { AdminShell } from '@/components/admin/AdminShell';
+import { getAdminDashboardData, requireAdminProfile } from '@/services/admin.service';
 
-export default function Page() {
-  return <PageShell route={findRouteByHref('/admin')} />;
+export const dynamic = 'force-dynamic';
+
+export default async function AdminPage() {
+  const profile = await requireAdminProfile();
+  const data = await getAdminDashboardData(profile);
+
+  return <AdminShell data={data} />;
 }

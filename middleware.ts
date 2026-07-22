@@ -2,6 +2,7 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 const PROTECTED_ROUTES = ['/admin', '/profile', '/settings', '/friends', '/clan', '/play', '/battle-pass', '/daily-rewards'];
+const ADMIN_ROLES = new Set(['admin', 'moderator', 'owner']);
 const AUTH_ROUTES = ['/login', '/register', '/forgot-password'];
 
 export async function middleware(request: NextRequest) {
@@ -42,6 +43,18 @@ export async function middleware(request: NextRequest) {
     redirectUrl.pathname = '/login';
     redirectUrl.searchParams.set('next', request.nextUrl.pathname);
     return NextResponse.redirect(redirectUrl);
+  }
+
+  if (request.nextUrl.pathname.startsWith('/admin') && data.user) {
+    const { data: profile } = await supabase.from('profiles').select('role').eq('user_id', data.user.id).maybeSingle();
+    const role = typeof profile?.role === 'string' ? profile.role : null;
+
+    if (!role || !ADMIN_ROLES.has(role)) {
+      const redirectUrl = request.nextUrl.clone();
+      redirectUrl.pathname = '/';
+      redirectUrl.search = '';
+      return NextResponse.redirect(redirectUrl);
+    }
   }
 
   if (isAuthRoute && data.user) {
