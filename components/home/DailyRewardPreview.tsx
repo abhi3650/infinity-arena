@@ -1,0 +1,2 @@
+import { GlassCard } from '@/components/ui/GlassCard';
+export function DailyRewardPreview(){return <GlassCard className="p-6"><h2 className="text-2xl font-black text-white">Daily reward</h2><div className="mt-5 grid grid-cols-5 gap-2">{['XP','Shard','Boost','Skin','∞'].map((r,i)=><div key={r} className={`rounded-2xl p-4 text-center font-bold ${i===4?'bg-gradient-to-br from-primary to-accent text-white':'bg-white/5 text-slate-300'}`}>{r}</div>)}</div></GlassCard>}
